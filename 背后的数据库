@@ -1,0 +1,22 @@
+<?
+ 
+$id=$_POST['id'];
+$host="localhost";
+$user="root";
+$pass="root";
+$link=mysql_connect($host,$user,$pass);
+$db_name="test";
+$table_name="test1";
+mysql_select_db($db_name);
+$str="update {$table_name} set name='{$_POST['name']}',mail='{$_POST['mail']}',phone='{$_POST['phone']}',address='{$_POST['address']}' where id='{$_POST['id']}' ";
+mysql_query($str,$link) or die ("update failed ".mysql_error());
+?>
+<html>
+<head>
+<title>简易通讯录修改记录处理</title>
+</head>
+<meta http-equiv="refresh" content="2;url=14-14.php">
+<body>
+已经成功添加记录，2秒后返回
+</body>
+</html>
