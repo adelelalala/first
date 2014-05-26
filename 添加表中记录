@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>简易通讯记录添加前台</title>
+</head>
+<body>
+<script>
+function Juge(theForm)
+{
+ if(theForm.name.value=="")
+ {
+  alert("请输入姓名！");
+  theForm.name.focus();
+  return (false);
+ }
+ if(theForm.mail.value=="")
+ {
+  alert("请输入邮箱！");
+  theForm.name.focus();
+  return (false);
+ }
+ 
+ if(theForm.phone.value=="")
+ {
+  alert("请输入电话号码! ");
+  theForm.phone.focus();
+  return (false);
+ }
+ if(theForm.address.value=="")
+ {
+  alert("请输入地址");
+  theForm.address.focus();
+  return (false);
+ }
+}
+</script>
+<div align=center>
+<h1>简易通讯录修改记录前台</h1>
+<p>
+<a href="14-14.php">返回首页</a>
+<table border=1>
+<form action="14-16.php" method="post" onsubmit="return Juge(this)">
+<?
+$link=mysql_connect("localhost","root","root");
+mysql_select_db("test");
+$sql="select* from test1 where id={$_GET['id']}";
+$result=mysql_query($sql);
+$row=mysql_fetch_array($result);
+?>
+<input type="hidden" name="id" value="<?echo $row['id']?>">
+<tr>
+<td>输入姓名：</td>
+<td><input name="name" type="text" value="<?echo $row['name']?>"></td>
+</tr>
+<tr>
+<td>输入邮箱：</td>
+<td><input name="mail" type="text" value="<?echo $row['mail']?>"></td>
+</tr>
+</tr>
+<tr>
+<td>输入电话：</td>
+<td><input name="phone" type="text" value="<?echo $row['phone']?>"></td>
+</tr>
+</tr>
+<tr>
+<td>输入地址：</td>
+<td><input name="address" type="text" value="<?echo $row['address']?>"></td>
+</tr>
+<td collapse="2" align=center><input type=submit value="确认提交">
+<input type=reset value="重置"></td>
+</tr>
+</form>
+</table>
+</div>
+</body>
+</html>
